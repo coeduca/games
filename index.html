@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Juegos</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --card-bg: #1e293b;
+            --accent-color: #3b82f6;
+            --hover-color: #60a5fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--hover-color);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            background-color: #283548;
+        }
+
+        /* Colores específicos para darle variedad a los bordes al hacer hover */
+        .game-card:nth-child(1):hover { border-color: #ef4444; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); }
+        .game-card:nth-child(2):hover { border-color: #f59e0b; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
+        .game-card:nth-child(3):hover { border-color: #10b981; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); }
+        .game-card:nth-child(4):hover { border-color: #8b5cf6; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); }
+        .game-card:nth-child(5):hover { border-color: #ec4899; box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3); }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 Centro de Juegos</h1>
+        <p>Elige tu próxima aventura</p>
+    </header>
+
+    <main class="game-grid">
+        <a href="trivia/" class="game-card">
+            <span class="icon">🧠</span>
+            Trivia
+        </a>
+        
+        <a href="imagematch/" class="game-card">
+            <span class="icon">🃏</span>
+            Image Match
+        </a>
+        
+        <a href="hangman/" class="game-card">
+            <span class="icon">🪢</span>
+            Hangman
+        </a>
+        
+        <a href="popstudents/" class="game-card">
+            <span class="icon">🎓</span>
+            Pop Students
+        </a>
+
+        <a href="tictactoe/" class="game-card">
+            <span class="icon">❌⭕</span>
+            Tic Tac Toe
+        </a>
+
+        <a href="snake/" class="game-card">
+            <span class="icon">🐍</span>
+            Snake
+        </a>
+
+        <a href="memory/" class="game-card">
+            <span class="icon">🧩</span>
+            Memory Game
+        </a>
+
+        <a href="simonsays/" class="game-card">
+            <span class="icon">🔴🟢</span>
+            Simon Says
+        </a>
+
+        <a href="pong/" class="game-card">
+            <span class="icon">🏓</span>
+            Pong
+        </a>
+
+        <a href="tetris/" class="game-card">
+            <span class="icon">🧱</span>
+            Tetris Clone
+        </a>
+    </main>
+
+</body>
+</html>
