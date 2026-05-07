@@ -35,18 +35,35 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 30px;
+    padding: 25px 30px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    max-width: 600px;
+    max-width: 1000px;
     width: 100%;
+  }
+
+  .game-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 25px;
+    align-items: start;
+  }
+
+  .board-section {
+    min-width: 0;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
   h1 {
     color: white;
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2em;
+    margin-bottom: 5px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
     font-weight: 800;
@@ -55,50 +72,55 @@
   .subtitle {
     text-align: center;
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 25px;
-    font-size: 1em;
+    margin-bottom: 20px;
+    font-size: 0.9em;
     font-weight: 300;
   }
 
   .stats {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 25px;
+    flex-direction: column;
+    gap: 12px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    padding: 15px;
+    padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .stat-item {
     text-align: center;
     color: white;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .stat-label {
-    font-size: 0.85em;
+    font-size: 0.8em;
     opacity: 0.85;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
   .stat-value {
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
 
   .hearts {
-    color: #ff6b9d;
-    letter-spacing: 2px;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    word-break: break-all;
   }
 
   .board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
   }
 
   .card {
@@ -152,7 +174,7 @@
   .card-front {
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc2eb 100%);
     color: white;
-    font-size: 2.2em;
+    font-size: 1.8em;
     font-weight: 800;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.4);
@@ -196,7 +218,6 @@
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-top: 10px;
   }
 
   button {
@@ -291,21 +312,38 @@
   }
 
   /* Responsive */
+  @media (max-width: 768px) {
+    .game-layout {
+      grid-template-columns: 1fr;
+    }
+    .stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 100px;
+    }
+  }
+
   @media (max-width: 480px) {
     .container {
       padding: 20px 15px;
     }
     h1 {
-      font-size: 1.8em;
+      font-size: 1.6em;
     }
     .stat-value {
-      font-size: 1.4em;
+      font-size: 1.3em;
     }
     .card-front {
-      font-size: 1.6em;
+      font-size: 1.4em;
     }
     .board {
       gap: 8px;
+    }
+    .hearts {
+      font-size: 0.9em;
     }
   }
 </style>
@@ -315,25 +353,31 @@
     <h1>✨ Image Match ✨</h1>
     <p class="subtitle">Encuentra las 8 parejas antes de quedarte sin vidas</p>
 
-    <div class="stats">
-      <div class="stat-item">
-        <div class="stat-label">Vidas</div>
-        <div class="stat-value hearts" id="lives">❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+    <div class="game-layout">
+      <div class="board-section">
+        <div class="board" id="board"></div>
       </div>
-      <div class="stat-item">
-        <div class="stat-label">Parejas</div>
-        <div class="stat-value" id="pairs">0 / 8</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-label">Intentos</div>
-        <div class="stat-value" id="attempts">0</div>
-      </div>
-    </div>
 
-    <div class="board" id="board"></div>
+      <div class="sidebar">
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-label">Vidas</div>
+            <div class="stat-value hearts" id="lives">❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Parejas</div>
+            <div class="stat-value" id="pairs">0 / 8</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Intentos</div>
+            <div class="stat-value" id="attempts">0</div>
+          </div>
+        </div>
 
-    <div class="controls">
-      <button onclick="initGame()">🔄 Reiniciar</button>
+        <div class="controls">
+          <button onclick="initGame()">🔄 Reiniciar</button>
+        </div>
+      </div>
     </div>
   </div>
 
